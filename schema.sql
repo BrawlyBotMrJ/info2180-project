@@ -1,41 +1,42 @@
-CREATE database dolphin_crm;
-use dolphin_crm;
+CREATE DATABASE dolphin_crm;
+USE dolphin_crm;
 
-Create table Users (
-	id INT PRIMARY KEY auto_increment,
-	firstname varchar(50),
-	lastname varchar(50),
-	passwrd varchar(20),
-	email varchar(30),
+CREATE TABLE Users (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	firstname VARCHAR(50),
+	lastname VARCHAR(50),
+	passwrd VARCHAR(255), -- Increased length to accommodate hashed passwords
+	email VARCHAR(30),
 	user_role ENUM("Admin", "Member"),
-	created_at datetime
+	created_at DATETIME
 );
 
-Insert into users (id,passwrd,email,user_role) values (1, "password123","admin@project2.com","Admin");
+-- Insert user with hashed password
+INSERT INTO Users (id, passwrd, email, user_role) 
+VALUES (1, '$2y$10$tYMNLOE.Y6gW4zYOP4icd.sQOblsVCtKJJjvB0jQ8xlhPc1GM.nsC', 'admin@project2.com', 'Admin');
 
-create table contacts (
-	id INT PRIMARY KEY auto_increment,
-	title varchar(70),
-	firstname varchar(50),
-	lastname varchar(50),
-	email varchar(30),
-	telephone varchar(15),
-	company varchar(25),
+CREATE TABLE contacts (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	title VARCHAR(70),
+	firstname VARCHAR(50),
+	lastname VARCHAR(50),
+	email VARCHAR(30),
+	telephone VARCHAR(15),
+	company VARCHAR(25),
 	contact_type ENUM('Sales Lead', 'Support'),
-	assigned_to int,
-	created_by int,
-	created_at datetime,
-	updated_at datetime,
+	assigned_to INT,
+	created_by INT,
+	created_at DATETIME,
+	updated_at DATETIME,
 	FOREIGN KEY (assigned_to) REFERENCES Users(id),
 	FOREIGN KEY (created_by) REFERENCES Users(id)
 );
 
-create table notes(
-	id int primary key auto_increment,
-	contact_id int,
-	message varchar(255),
-	created_by int,
-	created_at datetime,
+CREATE TABLE notes (
+	note_id INT PRIMARY KEY AUTO_INCREMENT,
+	contact_id INT,
+	message VARCHAR(255),
+	created_by INT,
+	created_at DATETIME,
     FOREIGN KEY (created_by) REFERENCES Users(id)
 );
-

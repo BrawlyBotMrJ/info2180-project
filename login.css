@@ -1,0 +1,46 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    
+    
+    height: 100vh;
+}
+
+nav{
+    margin: 0;
+    background-color: #0d1b2a;
+}
+
+nav h1{
+    margin: 0;
+    padding: 10px;
+
+}
+
+.login-container {
+    padding: 30px 40px;
+    
+    width: 360px;
+    text-align: center;
+    margin: auto;
+}
+
+/* Center form items vertically */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between each element */
+    align-items: stretch; /* Make elements fill the container width */
+    
+}
+
+form input,
+form button {
+    width: 100%;
+}
+
+form button {
+    margin-top: 10px;
+}
+
